@@ -13,8 +13,8 @@ public class Main {
         Graph g = new Graph(4);
         g = g.example();
 
-        /*Display d = new Display();
-        d.setImage(g.toImage());*/
+        Display d = new Display();
+        d.setImage(g.toImage());
 
         Kruskal k = new Kruskal(g);
         ArrayList<Edge> res = k.executerAlgo();

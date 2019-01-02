@@ -45,4 +45,8 @@ public class Edge
     public void setUsed(boolean used) {
         this.used = used;
     }
+
+    public String toString(){
+       return getFrom() + " " + getTo();
+    }
 }

@@ -16,20 +16,23 @@ public class Kruskal {
 
     public ArrayList<Edge> executerAlgo() {
         ArrayList<Edge> aretes = g.edges();
+        System.out.println(aretes.toString());
         ArrayList<Edge> res = new ArrayList<Edge>();
 
         Collections.shuffle(aretes);
 
-        do {
-            res.add(aretes.get(0));
-            aretes.remove(0);
+        res.add(aretes.get(0));
+        for(int i = 1; i<aretes.size(); i++){
+            if(union(res.get(i).getFrom(), aretes.get(i).getFrom());)
+            res.add(new Edge(res.get(i).getFrom(), res.get(i).getFrom()));
+        }
 
-        } while (!estCyclique(res));
+
         return res;
     }
 
 
-    public boolean estCyclique(ArrayList<Edge> list){
+    /*public boolean estCyclique(ArrayList<Edge> list){
         Edge areteATester = list.get(list.size()-1);
         for(int i = 0; i < list.size()-1; i++){
             if(areteATester.getTo() == list.get(i).getFrom())
@@ -38,6 +41,6 @@ public class Kruskal {
         }
         return false;
     }
-
+    */
 
 }

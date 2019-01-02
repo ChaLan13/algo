@@ -8,7 +8,6 @@ public class UnionFind {
 	private static class classe{
 		int point;
 		classe parent = null;
-		int rang = 0;
 
 		classe(int n){
 			this.point = n;
@@ -59,13 +58,8 @@ public class UnionFind {
 
 		size--;
 
-		if(p1.rang < p2.rang){
-			p1.parent = p2;
-		}
-		else{
-			p2.parent = p1;
-			if(p1.rang == p2.rang) p1.rang++;
-		}
+		p1.parent = p2;
+
 		return true;
 	}
 }

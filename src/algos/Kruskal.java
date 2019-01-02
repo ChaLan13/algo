@@ -23,7 +23,7 @@ public class Kruskal {
 
         res.add(aretes.get(0));
         for(int i = 1; i<aretes.size(); i++){
-            if(union(res.get(i).getFrom(), aretes.get(i).getFrom());)
+            if(union(res.get(i).getFrom(), aretes.get(i).getFrom()))
             res.add(new Edge(res.get(i).getFrom(), res.get(i).getFrom()));
         }
 

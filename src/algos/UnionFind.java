@@ -1,23 +1,20 @@
 package algos;
 
 import graphe.Edge;
-import graphe.Graph;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class UnionFind {
 	private static class classe{
-		public int point;
-		public classe parent = null;
-		public int rang = 0;
+		int point;
+		classe parent = null;
+		int rang = 0;
 
-		public classe(int n){
+		classe(int n){
 			this.point = n;
 		}
 
-		public classe find(){
+		classe find(){
 			if(parent == null)
 				return this;
 			return parent.find();

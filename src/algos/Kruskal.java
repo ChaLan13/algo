@@ -33,8 +33,11 @@ public class Kruskal {
         Edge areteATester = list.get(list.size()-1);
         for(int i = 0; i < list.size()-1; i++){
             if(areteATester.getTo() == list.get(i).getFrom())
+                return true;
 
         }
-
+        return false;
     }
+
+
 }

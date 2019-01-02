@@ -67,7 +67,7 @@ public class Graph{
         return list;
     }
 
-    static Graph example(){
+    public static Graph example(){
 	Graph g = new Graph(4);
 	g.setCoordinate(0, 100,100);
 	g.setCoordinate(1, 300,300);

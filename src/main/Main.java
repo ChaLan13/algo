@@ -2,6 +2,7 @@ package main;
 
 import algos.AldousBroder;
 import algos.Kruskal;
+import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import graphe.ArbreCouvrant;
 import graphe.Display;
 import graphe.Edge;
@@ -64,7 +65,7 @@ public class Main {
                         default:
                             System.out.println("error");
                     }
-                    System.out.println(i + " " + res);
+
                 }
 
                 System.out.println("1 : " + arbre1 + "\n");

@@ -28,6 +28,10 @@ public class AldousBroder {
         ArrayList<Edge> res = new ArrayList<>();
         Random r = new Random();
 
+        for (Edge e : g.edges()){
+            e.setUsed(false);
+        }
+
         int pointActuel = r.nextInt(size);
         points_visites[pointActuel] = true;
         size--;

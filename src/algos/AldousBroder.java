@@ -44,13 +44,35 @@ public class AldousBroder {
 
         while(pointAParcourir.size() > 0){
 
-            //TODO tant que continue alors
-            // si c'est marqué continue false
-            // sinon
-            //si sommet est dans à parcourir on met continue à false
-            //On met le point dans parcouru
-            //On marque l'arete
-            //On change le point actuel
+            boolean continuer = true;
+
+            ArrayList<Edge> adj = g.adj(pointActuel);
+            int i = r.nextInt(adj.size());
+
+            while(continuer && adj.size() > 0){
+                Edge e = adj.get(i);
+                //si l'arete est utilisé ça ne fait rien
+                if(e.isUsed())
+                    continuer = false;
+                //sinon on verifie si le point est à parcourir
+                else{
+                    if(pointAParcourir.contains(e.getTo())){
+                        //si oui, ça ne fait pas de cycle donc ok
+                        //on change de position et on recommence
+                        pointParcouru.add(e.getTo());
+                        pointAParcourir.remove(e.getTo());
+                        pointActuel = e.getTo();
+                        e.setUsed(true);
+                        res.add(e);
+                        continuer = false;
+                    }
+                    //sinon on la retire de la liste des adj et on teste une autre arete sans changer de position
+                    adj.remove(e);
+                  i = r.nextInt(adj.size());
+                }
+
+            }
+
         }
 
 

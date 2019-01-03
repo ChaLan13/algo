@@ -28,9 +28,9 @@ public class Main {
         d.setImage(g.toImage());
 
         Kruskal k = new Kruskal(g);
+
         for (int i = 0; i < 1000000; i++){
             int res = k.executerAlgo();
-            System.out.println(res);
             switch(res){
                 case 1 :
                     arbre1++; break;

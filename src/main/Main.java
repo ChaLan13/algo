@@ -27,48 +27,60 @@ public class Main {
 
 
         AldousBroder a = new AldousBroder(g);
-        try{
-            int res = a.executerAlgo();
-            System.out.println(res);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
 
-       /* Display d = new Display();
+       Display d = new Display();
         d.setImage(g.toImage());
 
-        Kruskal k = new Kruskal(g);
 
-        for (int i = 0; i < 1000000; i++){
-            int res = k.executerAlgo();
-            switch(res){
-                case 1 :
-                    arbre1++; break;
-                case 2 : arbre2++;break;
-                case 3 : arbre3++;break;
-                case 4 : arbre4++;break;
-                case 5 : arbre5++;break;
-                case 6 : arbre6++;break;
-                case 7 : arbre7++;break;
-                case 8 : arbre8++;break;
-                default:
-                    System.out.println("error");
+            try{
+
+                for (int i = 0; i < 1000000; i++) {
+                    int res = a.executerAlgo();
+                    switch (res) {
+                        case 1:
+                            arbre1++;
+                            break;
+                        case 2:
+                            arbre2++;
+                            break;
+                        case 3:
+                            arbre3++;
+                            break;
+                        case 4:
+                            arbre4++;
+                            break;
+                        case 5:
+                            arbre5++;
+                            break;
+                        case 6:
+                            arbre6++;
+                            break;
+                        case 7:
+                            arbre7++;
+                            break;
+                        case 8:
+                            arbre8++;
+                            break;
+                        default:
+                            System.out.println("error");
+                    }
+                    System.out.println(i + " " + res);
+                }
+
+                System.out.println("1 : " + arbre1 + "\n");
+                System.out.println("2 : " + arbre2 + "\n");
+                System.out.println("3 : " + arbre3 + "\n");
+                System.out.println("4 : " + arbre4 + "\n");
+                System.out.println("5 : " + arbre5 + "\n");
+                System.out.println("6 : " + arbre6 + "\n");
+                System.out.println("7 : " + arbre7 + "\n");
+                System.out.println("8 : " + arbre8 + "\n");
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
             }
 
         }
 
 
-        System.out.println("1 : " + arbre1 + "\n");
-        System.out.println("2 : " + arbre2 + "\n");
-        System.out.println("3 : " + arbre3 + "\n");
-        System.out.println("4 : " + arbre4 + "\n");
-        System.out.println("5 : " + arbre5 + "\n");
-        System.out.println("6 : " + arbre6 + "\n");
-        System.out.println("7 : " + arbre7 + "\n");
-        System.out.println("8 : " + arbre8 + "\n");
-
-        */
-
-    }
-}

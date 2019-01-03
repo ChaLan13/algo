@@ -54,8 +54,7 @@ public class AldousBroder {
                      * Il faut donc essayer dans le sens from -> to
                      * et dans le sens to -> from
                      */
-                    e.setUsed(true);
-                    res.add(e);
+
 
                     //from -> to
                     if(e.getFrom() == pointActuel){
@@ -64,6 +63,8 @@ public class AldousBroder {
                             //mais la on sait qu'il n'est pas visite, donc on va le visiter
                             points_visites[e.getTo()] = true;
                             size--;
+                            e.setUsed(true);
+                            res.add(e);
                             arreter = true;
                         }
                     }
@@ -72,6 +73,8 @@ public class AldousBroder {
                             arreter = true;
                             points_visites[e.getFrom()] = true;
                             size--;
+                            e.setUsed(true);
+                            res.add(e);
 
                         }
                     }
@@ -94,8 +97,6 @@ public class AldousBroder {
 
 
         int sizeArbre = 8;
-
-        System.out.println(res.toString());
 
         for(int i = 0; i < sizeArbre; i++){
             ArbreCouvrant a = arbreCouvrants.get(i);

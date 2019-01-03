@@ -5,6 +5,7 @@ import graphe.Edge;
 import graphe.Graph;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class AldousBroder {
@@ -21,66 +22,82 @@ public class AldousBroder {
         arbreCouvrants = ArbreCouvrant.arbreCouvrants;
     }
 
-    public int executerAlgo(){
-        int size = 8;
+    public int executerAlgo() throws Exception{
+        int size = g.vertices();
+        boolean[] points_visites = new boolean[size];
         ArrayList<Edge> res = new ArrayList<>();
-        ArrayList<Integer> pointAParcourir = new ArrayList<>();
-        ArrayList<Integer> pointParcouru = new ArrayList<>();
         Random r = new Random();
 
-        for(Edge e : g.edges()){
-            if(pointAParcourir.get(e.getFrom()) == null){
-                pointAParcourir.add(e.getFrom());
-            }
-            if(pointAParcourir.get(e.getTo()) == null){
-               pointAParcourir.add(e.getTo());
-                size++;
-            }
-        }
+        int pointActuel = r.nextInt(size);
+        points_visites[pointActuel] = true;
+        size--;
 
-        int pointActuel = r.nextInt(4);
-        pointAParcourir.remove(pointActuel);
-        pointParcouru.add(pointActuel);
+        while(size > 0){
 
-        while(pointAParcourir.size() > 0){
-
-            boolean continuer = true;
+            boolean arreter = false;
 
             ArrayList<Edge> adj = g.adj(pointActuel);
-            int i = r.nextInt(adj.size());
+            Collections.shuffle(adj);
+            Edge e;
 
-            while(continuer && adj.size() > 0){
-                Edge e = adj.get(i);
-                //si l'arete est utilisé ça ne fait rien
-                if(e.isUsed())
-                    continuer = false;
-                //sinon on verifie si le point est à parcourir
+
+            for(int i=0; (i < adj.size()) && !arreter; i++){
+                e = adj.get(i);
+
+                if(e.isUsed()){//On peut retourner en arriere
+                    //car l arete est deja visitee
+                    //mais on n ajoute rien aux points visites
+                    arreter = true;
+                }
                 else{
-                    if(pointAParcourir.contains(e.getTo())){
-                        //si oui, ça ne fait pas de cycle donc ok
-                        //on change de position et on recommence
-                        pointParcouru.add(e.getTo());
-                        pointAParcourir.remove(e.getTo());
-                        pointActuel = e.getTo();
-                        e.setUsed(true);
-                        res.add(e);
-                        continuer = false;
+                    /*Comme le graphe n'est pas considere comme oriente,
+                     * Il faut donc essayer dans le sens from -> to
+                     * et dans le sens to -> from
+                     */
+                    e.setUsed(true);
+                    res.add(e);
+
+                    //from -> to
+                    if(e.getFrom() == pointActuel){
+                        if(!points_visites[e.getTo()]){
+                            //Si le point est deja visite, Ne pas prendre car creation d'un cycle
+                            //mais la on sait qu'il n'est pas visite, donc on va le visiter
+                            points_visites[e.getTo()] = true;
+                            size--;
+                            arreter = true;
+                        }
                     }
-                    //sinon on la retire de la liste des adj et on teste une autre arete sans changer de position
-                    adj.remove(e);
-                  i = r.nextInt(adj.size());
+                    else{//To -> From
+                        if(!points_visites[e.getFrom()]){
+                            arreter = true;
+                            points_visites[e.getFrom()] = true;
+                            size--;
+
+                        }
+                    }
                 }
 
+                //Visiter l'arrete
+                if(e.getFrom() == pointActuel) //sens From -> To
+                    pointActuel = e.getTo();
+                else// To -> From
+                    pointActuel = e.getFrom();
+
             }
+
+            if(!arreter) // Si on ne s'est pas arrete volontairement (donc pas trouve de chemin)
+                //alors error
+                throw new Exception("Graphe avec un point d'arite 0");
 
         }
 
 
 
+        int sizeArbre = 8;
 
+        System.out.println(res.toString());
 
-
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i < sizeArbre; i++){
             ArbreCouvrant a = arbreCouvrants.get(i);
             if(a.equals(res))
                 return i+1;

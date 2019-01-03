@@ -1,5 +1,6 @@
 package main;
 
+import algos.AldousBroder;
 import algos.Kruskal;
 import graphe.ArbreCouvrant;
 import graphe.Display;
@@ -24,7 +25,17 @@ public class Main {
         Graph g = new Graph(4);
         g = g.example();
 
-        Display d = new Display();
+
+        AldousBroder a = new AldousBroder(g);
+        try{
+            int res = a.executerAlgo();
+            System.out.println(res);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+       /* Display d = new Display();
         d.setImage(g.toImage());
 
         Kruskal k = new Kruskal(g);
@@ -56,6 +67,8 @@ public class Main {
         System.out.println("6 : " + arbre6 + "\n");
         System.out.println("7 : " + arbre7 + "\n");
         System.out.println("8 : " + arbre8 + "\n");
+
+        */
 
     }
 }

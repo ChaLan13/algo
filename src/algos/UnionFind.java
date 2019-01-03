@@ -23,7 +23,7 @@ public class UnionFind {
 	private static HashMap<Integer, classe> all_in_partition;
 	public static int size;
 
-	public static void MakeSet(List<Edge> edges){
+	public static void makeSet(List<Edge> edges){
 		all_in_partition = new HashMap<>();
 		size = 0;
 

@@ -1,22 +1,3 @@
-public class ArbreCouvrant {
-	public List<Edge> aretes;
-
-	public ArbreCouvrant(List<Edge> ar){
-		this.aretes = ar;
-	}
-
-	public boolean equals(List<Edge> ar){
-		int size = ar.size();
-		for(int i=0; i < size; i++){
-			Edge e = ar.get(i);
-			if(!aretes.contains(e))
-				return false;
-		}
-		return true;
-	}
-
-}
-
 
 //Kruskal
 

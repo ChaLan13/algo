@@ -49,4 +49,12 @@ public class Edge
     public String toString(){
        return getFrom() + " " + getTo();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Edge))
+            return false;
+        Edge e = (Edge) obj;
+        return (e.from == this.from) && (e.to == this.to);
+    }
 }

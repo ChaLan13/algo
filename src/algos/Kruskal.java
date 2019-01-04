@@ -1,6 +1,5 @@
 package algos;
 
-import graphe.ArbreCouvrant;
 import graphe.Edge;
 import graphe.Graph;
 
@@ -10,18 +9,13 @@ import java.util.Collections;
 import static algos.UnionFind.makeSet;
 import static algos.UnionFind.union;
 
-public class Kruskal {
-
-    private Graph g;
-    public ArrayList<ArbreCouvrant> arbreCouvrants = new ArrayList<ArbreCouvrant>();
+public class Kruskal extends algo{
 
     public Kruskal(Graph graph){
-        g = graph;
-        initArbresCouvrants();
+        super(graph);
     }
 
-    public int executerAlgo() {
-        int size = 8;
+    public ArrayList<Edge> doAlgo() {
         ArrayList<Edge> aretes = g.edges();
         ArrayList<Edge> res = new ArrayList<Edge>();
 
@@ -33,18 +27,6 @@ public class Kruskal {
                 res.add(new Edge(aretes.get(i).getFrom(), aretes.get(i).getTo()));
         }
 
-        for(int i = 0; i < size; i++){
-            ArbreCouvrant a = arbreCouvrants.get(i);
-            if(a.equals(res))
-                return i+1;
-        }
-        return -1;
+        return res;
     }
-
-
-    public void initArbresCouvrants(){
-        arbreCouvrants = ArbreCouvrant.arbreCouvrants;
-    }
-
-
 }

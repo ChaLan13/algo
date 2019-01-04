@@ -9,8 +9,7 @@ public class Main {
     public static void main(String args[]){
         int arbres[] = new int[8];
 
-        Graph g = new Graph(4);
-        g = Graph.example();
+        Graph g = Graph.example();
 
 
         AldousBroder a = new AldousBroder(g);

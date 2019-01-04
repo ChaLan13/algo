@@ -1,12 +1,9 @@
 package graphe;
-import graphe.Display;
-import graphe.Edge;
-import graphe.Graph;
 
-import java.io.*;
-
-
-import java.util.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Locale;
+import java.util.Scanner;
 public class Test{
 
 

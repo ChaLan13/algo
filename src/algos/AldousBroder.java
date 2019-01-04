@@ -36,17 +36,25 @@ public class AldousBroder {
         points_visites[pointActuel] = true;
         size--;
 
-        while(size > 0){
+        while(size > 0){//Tant qu'on a pas visite tous les points du graphe
 
             boolean arreter = false;
 
             ArrayList<Edge> adj = g.adj(pointActuel);
             Collections.shuffle(adj);
             Edge e;
+			int pointFutur = -1;
 
 
-            for(int i=0; (i < adj.size()) && !arreter; i++){
+            for(int i=0; (i < adj.size()) && !arreter; i++){//Pour toutes les aretes adj OU quand on a trouve la bonne
                 e = adj.get(i);
+
+				if(e.getFrom() == pointActuel) //From->To
+					pointFutur=e.getTo();
+				else //To->From
+					pointFutur=e.getFrom();
+
+
 
                 if(e.isUsed()){//On peut retourner en arriere
                     //car l arete est deja visitee
@@ -58,49 +66,28 @@ public class AldousBroder {
                      * Il faut donc essayer dans le sens from -> to
                      * et dans le sens to -> from
                      */
+					if(!points_visites[pointFutur]){
+						//Si le point est deja visite, Ne pas prendre car creation d'un cycle
+						//mais la on sait qu'il n'est pas visite, donc on va le visiter
 
-
-                    //from -> to
-                    if(e.getFrom() == pointActuel){
-                        if(!points_visites[e.getTo()]){
-                            //Si le point est deja visite, Ne pas prendre car creation d'un cycle
-                            //mais la on sait qu'il n'est pas visite, donc on va le visiter
-                            points_visites[e.getTo()] = true;
-                            size--;
-                            e.setUsed(true);
-                            res.add(e);
-                            arreter = true;
-                        }
-                    }
-                    else{//To -> From
-                        if(!points_visites[e.getFrom()]){
-                            arreter = true;
-                            points_visites[e.getFrom()] = true;
-                            size--;
-                            e.setUsed(true);
-                            res.add(e);
-
-                        }
-                    }
+						arreter = true;//On arrete de chercher quelle arete a visiter
+						points_visites[pointFutur] = true;//Comme on va visiter ce point, on le marque comme visite
+						size--;//Il y aura donc un point en moins a visiter
+						e.setUsed(true);//Comme on utilise l'arete, on la marque comme visitee
+						res.add(e);//L'arbre couvrant aura donc cette arete
+					}
                 }
-
-                //Visiter l'arrete
-                if(e.getFrom() == pointActuel) //sens From -> To
-                    pointActuel = e.getTo();
-                else// To -> From
-                    pointActuel = e.getFrom();
-
             }
 
-            if(!arreter) // Si on ne s'est pas arrete volontairement (donc pas trouve de chemin)
+            pointActuel = pointFutur;
+
+            if(!arreter || pointActuel == -1) // Si on ne s'est pas arrete volontairement (donc pas trouve de chemin)
                 //alors error
                 throw new Exception("Graphe avec un point d'arite 0");
 
         }
 
-
-
-        int sizeArbre = 8;
+        int sizeArbre = arbreCouvrants.size();
 
         for(int i = 0; i < sizeArbre; i++){
             ArbreCouvrant a = arbreCouvrants.get(i);

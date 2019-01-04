@@ -1,12 +1,10 @@
 package graphe;
 
-import graphe.Edge;
-
-import java.util.ArrayList;
-import java.io.*;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class Graph{
    private ArrayList<Edge>[] adj;

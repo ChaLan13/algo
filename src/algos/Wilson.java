@@ -97,7 +97,7 @@ public class Wilson extends algo{
 					_cheminRetour.remove(first);
 					size--;
 				}
-				i = first;
+				i = first-1;
 			}
 
 			else {

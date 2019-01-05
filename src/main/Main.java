@@ -23,9 +23,7 @@ public class Main {
 
 		try{
 			for (int i = 0; i < 1000000; i++) {
-				System.out.println("Execution");
 				int res = w.executerAlgo();
-				System.out.println(i + " : " + res);
 				if(res == -1)
 					System.out.println("ERROR");
 				else

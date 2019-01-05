@@ -13,25 +13,25 @@ public class Wilson extends algo{
 	}
 
 	private boolean[] points_visites;
-	private int size;
+	private int _size;
 	private Random r;
 	private int point_actuel;
 	private ArrayList<Edge> _res;
 	private ArrayList<Edge> _cheminRetour;
 
 	public ArrayList<Edge> doAlgo() {
-		size = g.vertices();
+		_size = g.vertices();
 		r = new Random();
 		_res = new ArrayList<>();
-		points_visites = new boolean[size];
+		points_visites = new boolean[_size];
 
 
-		point_actuel = r.nextInt(size);
+		point_actuel = r.nextInt(_size);
 		points_visites[point_actuel] = true;
-		size--;
+		_size--;
 
 
-		while(size > 0){
+		while(_size > 0){
 			point_actuel = genNewUncoveredPoint();
 
 			cheminRetour();
@@ -43,26 +43,15 @@ public class Wilson extends algo{
 	}
 
 	private int genNewUncoveredPoint(){
-
 		ArrayList<Integer> list = new ArrayList<>();
+
 		for(int i = 0; i<points_visites.length; i++){
 			if(!points_visites[i])
 				list.add(i);
 		}
 
-		System.out.println("size : " + size);
-
-		String s = "";
-		for (boolean b : points_visites)
-			s+= b?"1":"0";
-		System.out.println(s);
-		System.out.println("list size" + list.size());
-		System.out.println(list);
 		int res = r.nextInt(list.size());
-		/*for(int i = 0; i <= res && i<points_visites.length; i++){
-			if(points_visites[i])
-				res++;
-		}*/
+
 		return list.get(res);
 	}
 
@@ -88,32 +77,29 @@ public class Wilson extends algo{
 	}
 
 	private void enleverBoucle(){
-		int[] pointsParcouru = new int[points_visites.length];
-
-		for(int i=0; i < pointsParcouru.length; i++)
-			pointsParcouru[i] = -1;
-
 		int point = point_actuel;
-		pointsParcouru[point] = 0;
+		int size = _cheminRetour.size();
+		int[] indice_du_premier_depart = new int[size];
+		for(int i = 0; i < size; i++) indice_du_premier_depart[i] = -1;
 
-		for(int i = 0; i < _cheminRetour.size(); i++){
+		for(int i = 0; i < size; i++){
 			Edge e = _cheminRetour.get(i);
-
-			if(e.getFrom() == point) point = e.getTo();
-			else point = e.getFrom();
-
-			if(pointsParcouru[point] > -1){
-				int first = pointsParcouru[point];
-				int j;
-				for(j = first; j < i; j++)
-					_cheminRetour.remove(first+1);
-
-				i-= j;
+			if(indice_du_premier_depart[point] != -1){
+				int first = indice_du_premier_depart[point];
+				indice_du_premier_depart[point] = -1;
+				for(int j = first; j < i; j++){
+					_cheminRetour.remove(first);
+					size--;
+				}
+				i = first;
 			}
 			else {
-				pointsParcouru[point] = i;
+				indice_du_premier_depart[point] = i;
+				if(e.getFrom() == point) point = e.getTo();
+				else point = e.getFrom();
 			}
 		}
+
 	}
 
 	private void ajouterChemin(){
@@ -122,7 +108,6 @@ public class Wilson extends algo{
 			points_visites[e.getFrom()] = true;
 			points_visites[e.getTo()] = true;
 		}
-		size-=_cheminRetour.size();
-		System.out.println(size);
+		_size -=_cheminRetour.size();
 	}
 }

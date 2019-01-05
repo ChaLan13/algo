@@ -28,6 +28,8 @@ public class Wilson extends algo{
 
 		point_actuel = r.nextInt(size);
 		points_visites[point_actuel] = true;
+		size--;
+
 
 		while(size > 0){
 			point_actuel = genNewUncoveredPoint();
@@ -41,12 +43,27 @@ public class Wilson extends algo{
 	}
 
 	private int genNewUncoveredPoint(){
-		int res = r.nextInt(size);
-		for(int i = 0; i <= res; i++){
+
+		ArrayList<Integer> list = new ArrayList<>();
+		for(int i = 0; i<points_visites.length; i++){
 			if(!points_visites[i])
-				res++;
+				list.add(i);
 		}
-		return res;
+
+		System.out.println("size : " + size);
+
+		String s = "";
+		for (boolean b : points_visites)
+			s+= b?"1":"0";
+		System.out.println(s);
+		System.out.println("list size" + list.size());
+		System.out.println(list);
+		int res = r.nextInt(list.size());
+		/*for(int i = 0; i <= res && i<points_visites.length; i++){
+			if(points_visites[i])
+				res++;
+		}*/
+		return list.get(res);
 	}
 
 	private void cheminRetour(){
@@ -106,5 +123,6 @@ public class Wilson extends algo{
 			points_visites[e.getTo()] = true;
 		}
 		size-=_cheminRetour.size();
+		System.out.println(size);
 	}
 }

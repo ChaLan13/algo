@@ -24,7 +24,7 @@ public abstract class algo {
 		ArrayList<Edge> res = doAlgo();
 
 		//Cette partie permet de reconnaitre quel est l'arbre couvrant.
-		int size = res.size();
+		int size = arbreCouvrants.size();
 		for(int i = 0; i < size; i++){
 			ArbreCouvrant a = arbreCouvrants.get(i);
 			if(a.equals(res))

@@ -79,8 +79,8 @@ public class Wilson extends algo{
 	private void enleverBoucle(){
 		int point = point_actuel;
 		int size = _cheminRetour.size();
-		int[] indice_du_premier_depart = new int[size];
-		for(int i = 0; i < size; i++) indice_du_premier_depart[i] = -1;
+		int[] indice_du_premier_depart = new int[g.vertices()];
+		for(int i = 0; i < g.vertices(); i++) indice_du_premier_depart[i] = -1;
 
 		for(int i = 0; i < size; i++){
 			Edge e = _cheminRetour.get(i);

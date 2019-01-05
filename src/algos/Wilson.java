@@ -88,9 +88,12 @@ public class Wilson extends algo{
 			if(indice_du_premier_depart[point] != -1){
 
 				int first = indice_du_premier_depart[point];
-				indice_du_premier_depart[point] = -1;
 
 				for(int j = first; j < i; j++){
+					Edge ed = _cheminRetour.get(first);
+					indice_du_premier_depart[e.getFrom()] = -1;
+					indice_du_premier_depart[e.getTo()] = -1;
+
 					_cheminRetour.remove(first);
 					size--;
 				}
@@ -99,7 +102,7 @@ public class Wilson extends algo{
 
 			else {
 				indice_du_premier_depart[point] = i;
-				
+
 				if(e.getFrom() == point) point = e.getTo();
 				else point = e.getFrom();
 			}

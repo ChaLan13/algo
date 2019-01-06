@@ -15,7 +15,7 @@ public class Maths {
     }
 
     public static int combinaison(int n, int k){
-        return(arrangement(n,k)/factorielle(n));
+        return(factorielle(k)/(factorielle(k-n)*factorielle(n)));
     }
 
 

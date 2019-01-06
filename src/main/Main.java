@@ -2,6 +2,7 @@ package main;
 
 import algos.AldousBroder;
 import algos.Kruskal;
+import algos.Labyrinth;
 import algos.Wilson;
 import graphe.Display;
 import graphe.Graph;
@@ -25,6 +26,11 @@ public class Main {
 
 
         d.setImage(gc.toImage());
+
+		Labyrinth l = new Labyrinth(gc);
+		l.identifier();
+		System.out.println("Taille:" + l.taille);
+		System.out.println("Cul de sacs:" + l.cul_de_sac);
 
 
 

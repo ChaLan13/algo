@@ -56,12 +56,29 @@ public class GrapheCarre extends Graph {
 		BasicStroke bs = new BasicStroke(2);
 		g2d.setStroke(bs);
 
+		int entree = vertices()-l;
+		System.out.println("Entree:"+entree);
+		int sortie = l - 1;
+		System.out.println("Sortie:"+sortie);
+
 		// dessine les sommets
 		for (int i = 0; i < V; i++) {
-			g2d.setColor(Color.WHITE);
+			if(i==entree || i==sortie)
+				g2d.setColor(Color.yellow);
+			else
+				g2d.setColor(Color.WHITE);
+
 			g2d.fillRect(coordX[i]-15, coordY[i]-15,30,30);
 			g2d.setColor(Color.BLACK);
 			g2d.drawRect(coordX[i] - 15, coordY[i] - 15, 30, 30);
+
+			g2d.setColor(Color.RED);
+			if(i==entree){
+				g2d.fillRect(coordX[i]-25, coordY[i]-3, 11, 6);
+			}
+			if(i==sortie){
+				g2d.fillRect(coordX[i]+14, coordY[i]-3, 11, 6);
+			}
 		}
 
 
@@ -77,10 +94,10 @@ public class GrapheCarre extends Graph {
 				int X, Y, H, L;
 				if(coordX[j] < coordX[i]){
 					g2d.setColor(Color.WHITE);
-					X = coordX[j]-3;
+					X = coordX[j]+14;
 					Y = coordY[j]-3;
 					H = 6;
-					L = 60;
+					L = 22;
 					g2d.fillRect(X,Y,L,H);
 
 					//ligne noire
@@ -91,8 +108,8 @@ public class GrapheCarre extends Graph {
 				if(coordY[j] < coordY[i]) {
 					g2d.setColor(Color.WHITE);
 					X = coordX[j] - 3;
-					Y = coordY[j] - 3;
-					H = 60;
+					Y = coordY[j]+14;
+					H = 22;
 					L = 6;
 					g2d.fillRect(X, Y, L, H);
 

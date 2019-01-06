@@ -7,11 +7,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Graph{
-   private ArrayList<Edge>[] adj;
-   private int[] coordX;
-   private int[] coordY;
-   private final int V;
-   private int E;
+   ArrayList<Edge>[] adj;
+   int[] coordX;
+   int[] coordY;
+   final int V;
+   int E;
 
    @SuppressWarnings("unchecked")
    public Graph(int N)
@@ -117,6 +117,12 @@ public class Graph{
 					g2d.setColor(Color.GRAY);
 
 				g2d.drawLine(coordX[i], coordY[i], coordX[j], coordY[j]);
+				if(e.isUsed()){
+					g2d.drawLine(coordX[i]+1, coordY[i], coordX[j]+1, coordY[j]);
+					g2d.drawLine(coordX[i]-1, coordY[i], coordX[j]-1, coordY[j]);
+					g2d.drawLine(coordX[i], coordY[i]+1, coordX[j], coordY[j]+1);
+					g2d.drawLine(coordX[i], coordY[i]-1, coordX[j], coordY[j]-1);
+				}//*/
 	    }
 	// dessine les sommets 
 		for (int i = 0; i < V; i++)

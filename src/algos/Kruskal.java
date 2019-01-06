@@ -20,11 +20,15 @@ public class Kruskal extends algo{
         ArrayList<Edge> res = new ArrayList<Edge>();
 
         Collections.shuffle(aretes);
+        for(Edge e : aretes)
+        	e.setUsed(false);
 
         makeSet(aretes);
         for(int i = 0; i < aretes.size(); i++){
-            if(union(aretes.get(i)))
-                res.add(new Edge(aretes.get(i).getFrom(), aretes.get(i).getTo()));
+            if(union(aretes.get(i))) {
+				res.add(aretes.get(i));
+				aretes.get(i).setUsed(true);
+			}
         }
 
         return res;

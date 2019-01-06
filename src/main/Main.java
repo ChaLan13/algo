@@ -17,10 +17,16 @@ public class Main {
 
 
         AldousBroder a = new AldousBroder(g);
-        Kruskal k = new Kruskal(g);
-		Wilson w = new Wilson(g);
+        Kruskal k = new Kruskal(gc);
+		Wilson w = new Wilson(gc);
        	Display d = new Display();
+
+       	k.doAlgo();
+
+
         d.setImage(gc.toImage());
+
+
 
 
 		try{

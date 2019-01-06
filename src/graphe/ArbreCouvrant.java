@@ -1,5 +1,7 @@
 package graphe;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class ArbreCouvrant {
@@ -78,5 +80,4 @@ public class ArbreCouvrant {
         }
         return true;
     }
-
 }

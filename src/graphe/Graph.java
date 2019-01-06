@@ -99,10 +99,10 @@ public class Graph{
     
 
     public BufferedImage toImage(){
-		BufferedImage image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_RGB);
+		BufferedImage image = new BufferedImage(1820, 980, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = image.createGraphics();
 		g2d.setBackground(Color.WHITE);
-		g2d.fillRect(0, 0, 400, 400);
+		g2d.fillRect(0, 0, 1820, 980);
 		g2d.setColor(Color.BLACK);
 		BasicStroke bs = new BasicStroke(2);
 		g2d.setStroke(bs);

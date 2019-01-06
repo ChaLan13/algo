@@ -30,6 +30,8 @@ public class Wilson extends algo{
 		points_visites[point_actuel] = true;
 		_size--;
 
+		for(Edge e : g.edges())
+			e.setUsed(false);
 
 		while(_size > 0){
 			point_actuel = genNewUncoveredPoint();
@@ -115,6 +117,7 @@ public class Wilson extends algo{
 		for(Edge e : _cheminRetour) {
 			points_visites[e.getFrom()] = true;
 			points_visites[e.getTo()] = true;
+			e.setUsed(true);
 		}
 		_size -=_cheminRetour.size();
 	}

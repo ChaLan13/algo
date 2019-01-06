@@ -21,7 +21,7 @@ public class Main {
 		Wilson w = new Wilson(gc);
        	Display d = new Display();
 
-       	k.doAlgo();
+       	w.doAlgo();
 
 
         d.setImage(gc.toImage());

@@ -9,18 +9,20 @@ public class Labyrinth {
 	GrapheCarre g;
 	boolean[] points_visites;
 	int entree, sortie;
-	public int cul_de_sac = 0;
+	public int cul_de_sac;
 	public int taille;
 
 	public Labyrinth(GrapheCarre g){
 		this.g = g;
-		points_visites = new boolean[g.vertices()];
 		entree = g.vertices()-g.l;
 		sortie = g.l - 1;
 	}
 
 	public void identifier(){
-		taille = chercherAutour(entree);
+		points_visites = new boolean[g.vertices()];
+		taille = 0;
+		cul_de_sac = 0;
+		taille = chercherAutour(entree)+1;
 	}
 
 	private int chercherAutour(int pointActuel){
@@ -39,8 +41,9 @@ public class Labyrinth {
 					cds = false;//Il reste du chemin donc pas de Cul De Sac
 					int res = chercherAutour(pointFutur);//Recursion sur ce point.
 					//Pas de cycle donc pas d'autres verifications a faire
-					if(res != -1)
-						chemin = res+1;
+					if(res != -1) {
+						chemin = res + 1;
+					}
 				}
 
 			}

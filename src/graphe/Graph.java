@@ -99,7 +99,10 @@ public class Graph{
     
 
     public BufferedImage toImage(){
-		BufferedImage image = new BufferedImage(1820, 980, BufferedImage.TYPE_INT_RGB);
+		int _taille;
+		_taille = (int) (Math.sqrt(V)*200);
+
+		BufferedImage image = new BufferedImage(_taille, _taille, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = image.createGraphics();
 		g2d.setBackground(Color.WHITE);
 		g2d.fillRect(0, 0, 1820, 980);

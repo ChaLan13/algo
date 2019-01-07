@@ -19,9 +19,10 @@ public class Kruskal extends algo{
         ArrayList<Edge> aretes = g.edges();
         ArrayList<Edge> res = new ArrayList<Edge>();
 
+		for(Edge e : aretes)
+			e.setUsed(false);
+
         Collections.shuffle(aretes);
-        for(Edge e : aretes)
-        	e.setUsed(false);
 
         makeSet(aretes);
         for(int i = 0; i < aretes.size(); i++){

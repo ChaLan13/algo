@@ -2,6 +2,7 @@ package graphe;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class GrapheCarre extends Graph {
 	public int l;
@@ -57,29 +58,31 @@ public class GrapheCarre extends Graph {
 		g2d.setStroke(bs);
 
 		int entree = vertices()-l;
-		System.out.println("Entree:"+entree);
 		int sortie = l - 1;
-		System.out.println("Sortie:"+sortie);
+		int count = 0;
 
 		// dessine les sommets
 		for (int i = 0; i < V; i++) {
-			if(i==entree || i==sortie)
-				g2d.setColor(Color.yellow);
-			else
-				g2d.setColor(Color.WHITE);
+			g2d.setColor(Color.WHITE);
 
 			g2d.fillRect(coordX[i]-15, coordY[i]-15,30,30);
 			g2d.setColor(Color.BLACK);
 			g2d.drawRect(coordX[i] - 15, coordY[i] - 15, 30, 30);
 
-			g2d.setColor(Color.RED);
-			if(i==entree){
-				g2d.fillRect(coordX[i]-25, coordY[i]-3, 11, 6);
-			}
-			if(i==sortie){
-				g2d.fillRect(coordX[i]+14, coordY[i]-3, 11, 6);
-			}
+
 		}
+		g2d.setColor(Color.WHITE);
+		g2d.fillRect(coordX[entree]-25, coordY[entree]-3, 11, 6);
+
+		g2d.fillRect(coordX[sortie]+14, coordY[sortie]-3, 11, 6);
+
+
+		g2d.setColor(Color.BLACK);
+		g2d.drawLine(coordX[entree]-25,coordY[entree]-4,coordX[entree]-15,coordY[entree]-4);
+		g2d.drawLine(coordX[entree]-25,coordY[entree]+4,coordX[entree]-15,coordY[entree]+4);
+
+		g2d.drawLine(coordX[sortie]+24,coordY[sortie]-4,coordX[sortie]+15,coordY[sortie]-4);
+		g2d.drawLine(coordX[sortie]+24,coordY[sortie]+4,coordX[sortie]+15,coordY[sortie]+4);
 
 
 		// dessine les arêtes
@@ -125,6 +128,10 @@ public class GrapheCarre extends Graph {
 		// dessine les noms des sommets
 		for (int i = 0; i < V; i++)
 			g2d.drawString(Integer.toString(i), coordX[i]-10, coordY[i]);
+
+		g2d.setColor(Color.RED);
+		g2d.drawString("?->", coordX[entree]-40, coordY[entree]+4);
+		g2d.drawString("->", coordX[sortie]+17, coordY[sortie]+4);
 
 		return image;
 	}

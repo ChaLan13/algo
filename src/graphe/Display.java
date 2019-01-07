@@ -24,7 +24,7 @@ public class Display extends JFrame {
     boolean visible;
     public  Display() {
         super("Image");       // Titre de la fenêtre
-        setPreferredSize(new Dimension(1200, 1200));  // largeur, hauteur
+        setPreferredSize(new Dimension(600, 600));  // largeur, hauteur
 
         jlabel = new JLabel();
 	visible = false;

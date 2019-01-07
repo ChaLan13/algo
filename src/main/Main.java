@@ -11,7 +11,6 @@ import graphe.GrapheCarre;
 public class Main {
 
     public static void main(String args[]){
-        int arbres[] = new int[8];
 
         Graph g = Graph.example();
 		GrapheCarre gc = GrapheCarre.example();
@@ -29,6 +28,7 @@ public class Main {
 
         double taille_kruskal = 0, taille_wilson = 0, taille_adb = 0;
         double cds_kruskal = 0, cds_wilson = 0, cds_adb = 0;
+
         double nb = 1000;
         for(int i = 0; i < nb; i++){
         	k.doAlgo();
@@ -68,7 +68,8 @@ public class Main {
 
 
 		try{
-			/*for (int i = 0; i < 1000000; i++) {
+			/*int arbres[] = new int[8];
+			for (int i = 0; i < 1000000; i++) {
 				int res = w.executerAlgo();
 				if(res == -1)
 					System.out.println("ERROR");

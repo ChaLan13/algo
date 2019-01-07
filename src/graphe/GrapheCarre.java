@@ -59,7 +59,6 @@ public class GrapheCarre extends Graph {
 
 		int entree = vertices()-l;
 		int sortie = l - 1;
-		int count = 0;
 
 		// dessine les sommets
 		for (int i = 0; i < V; i++) {

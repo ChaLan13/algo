@@ -20,7 +20,6 @@ public class Labyrinth {
 
 	public void identifier(){
 		points_visites = new boolean[g.vertices()];
-		taille = 0;
 		cul_de_sac = 0;
 		taille = chercherAutour(entree)+1;
 	}
